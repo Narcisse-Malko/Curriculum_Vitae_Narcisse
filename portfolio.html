@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV Narcisse NOUEMOU - Gestionnaire de l'Information</title>
+  <title>Portfolio - Narcisse NOUEMOU | Gestionnaire de l'Information</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -109,240 +108,420 @@
       transition: 0.4s;
     }
 
-    /* Header */
-    header {
+    /* Hero Section */
+    .hero {
       background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
       color: white;
-      padding: 60px 0;
+      padding: 100px 0 80px;
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 60px;
     }
 
-    .profile-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    .profile-img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 5px solid rgba(255, 255, 255, 0.3);
+    .hero h1 {
+      font-size: 3rem;
       margin-bottom: 20px;
-      object-fit: cover;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #c0392b;
+      transform: translateY(-3px);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+    .btn-outline {
+      border: 2px solid white;
+      color: white;
     }
 
-    header .title {
-      font-size: 1.3rem;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 20px;
-    }
-
-    .header-badges {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .badge {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 8px 15px;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .badge i {
-      margin-right: 5px;
-    }
-
-    /* Main content */
-    .main-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      margin-bottom: 40px;
-    }
-
-    @media (max-width: 900px) {
-      .main-content {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: 10px;
-      padding: 25px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
+    .btn-outline:hover {
+      background: white;
       color: var(--primary);
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 3px solid var(--secondary);
+      transform: translateY(-3px);
+    }
+
+    /* Section Styles */
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      position: relative;
       display: inline-block;
     }
 
-    h3 {
-      color: var(--secondary);
-      margin: 15px 0 5px;
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--secondary);
     }
 
-    .date {
-      color: var(--accent);
-      font-size: 0.9rem;
-      margin-bottom: 10px;
-      display: block;
+    .section-title p {
+      color: var(--dark);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
-    ul {
-      list-style: none;
-      margin: 15px 0;
+    /* About Section */
+    .about {
+      padding: 80px 0;
+      background: white;
     }
 
-    ul li {
-      margin: 10px 0;
-      padding-left: 25px;
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-text h3 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+    .about-image {
       position: relative;
     }
 
-    ul li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: var(--secondary);
-      font-weight: bold;
-      font-size: 1.2rem;
+    .about-image img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Skills Section */
+    .skills {
+      padding: 80px 0;
+      background: var(--light);
     }
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
     }
 
     .skill-category {
-      margin-bottom: 20px;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s;
     }
 
-    .skill-category h4 {
+    .skill-category:hover {
+      transform: translateY(-10px);
+    }
+
+    .skill-category h3 {
       color: var(--primary);
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
     }
 
-    .skill-category h4 i {
+    .skill-category h3 i {
       margin-right: 10px;
       color: var(--secondary);
+      font-size: 1.5rem;
     }
 
-    .tags {
+    .skill-item {
+      margin-bottom: 15px;
+    }
+
+    .skill-name {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .skill-bar {
+      height: 8px;
+      background: var(--light);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .skill-level {
+      height: 100%;
+      background: var(--secondary);
+      border-radius: 10px;
+    }
+
+    /* Projects Section */
+    .projects {
+      padding: 80px 0;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .project-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.1);
+    }
+
+    .project-content {
+      padding: 20px;
+    }
+
+    .project-content h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .project-content p {
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    .project-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      margin-bottom: 15px;
     }
 
-    .tag {
+    .project-tag {
       background: var(--light);
       color: var(--primary);
       padding: 5px 12px;
       border-radius: 20px;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
     }
 
-    /* Contact section */
+    .project-link {
+      display: inline-block;
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .project-link:hover {
+      color: var(--primary);
+    }
+
+    /* Contact Section */
     .contact {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: white;
-      padding: 40px 0;
-      text-align: center;
-      border-radius: 10px;
-      margin-top: 30px;
+      padding: 80px 0;
+      background: var(--light);
     }
 
-    .contact h2 {
-      color: white;
-      border-bottom: 3px solid var(--accent);
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
     }
 
     .contact-info {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 20px;
+      flex-direction: column;
+      gap: 25px;
     }
 
     .contact-item {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 15px;
     }
 
-    .contact-item i {
-      font-size: 1.5rem;
-      color: var(--accent);
-    }
-
-    .contact-item a {
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--secondary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: white;
-      text-decoration: none;
-      transition: color 0.3s;
+      font-size: 1.2rem;
     }
 
-    .contact-item a:hover {
-      color: var(--accent);
+    .contact-details h4 {
+      color: var(--primary);
+      margin-bottom: 5px;
     }
 
-    /* Download CV button */
-    .download-cv {
-      display: inline-block;
-      background: var(--accent);
+    .contact-form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background: var(--secondary);
       color: white;
-      padding: 12px 25px;
+      border: none;
+      padding: 12px 30px;
       border-radius: 50px;
-      text-decoration: none;
       font-weight: bold;
-      margin-top: 20px;
-      transition: background 0.3s, transform 0.3s;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      transition: background 0.3s;
     }
 
-    .download-cv:hover {
-      background: #c0392b;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    .submit-btn:hover {
+      background: var(--primary);
     }
 
     /* Footer */
     footer {
+      background: var(--primary);
+      color: white;
+      padding: 40px 0 20px;
       text-align: center;
-      padding: 20px 0;
-      margin-top: 40px;
-      color: var(--dark);
-      font-size: 0.9rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      font-size: 1.2rem;
+      transition: background 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--secondary);
+    }
+
+    .copyright {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
     }
 
     /* Responsive */
+    @media (max-width: 992px) {
+      .about-content,
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .about-image {
+        order: -1;
+      }
+    }
+
     @media (max-width: 768px) {
       .menu-toggle {
         display: flex;
@@ -368,22 +547,17 @@
         margin: 10px 0;
       }
 
-      header h1 {
-        font-size: 2rem;
+      .hero h1 {
+        font-size: 2.5rem;
       }
 
-      .header-badges {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-info {
+      .hero-buttons {
         flex-direction: column;
         gap: 15px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -397,9 +571,10 @@
       <span>Narcisse NOUEMOU</span>
     </div>
     <ul>
-      <li><a href="index.html">PRÉSENTATION</a></li>
+      <li><a href="index.html">ACCUEIL</a></li>
       <li><a href="portfolio.html">PORTFOLIO</a></li>
       <li><a href="blog.html">BLOG</a></li>
+      <li><a href="#contact">CONTACT</a></li>
     </ul>
     <div class="menu-toggle" onclick="toggleMenu()">
       <span></span>
@@ -409,198 +584,315 @@
   </div>
 </nav>
 
-<header>
-  <div class="container profile-container">
-    <img src="assets/profil.jpg" alt="Narcisse NOUEMOU" class="profile-img">
-    <h1>Narcisse NOUEMOU</h1>
-    <p class="title"> Documentaliste & Gestionnaire de l'Information & Archiviste</p>
-    <div class="header-badges">
-      <div class="badge"><i class="fas fa-graduation-cap"></i> Master 2 GSI</div>
-      <div class="badge"><i class="fas fa-map-marker-alt"></i> Île-de-France</div>
-      <div class="badge"><i class="fas fa-search"></i> Veille Stratégique</div>
+<section class="hero">
+  <div class="container hero-content">
+    <h1>Gestionnaire de l'Information & Archiviste Digital</h1>
+    <p>Expert en gestion documentaire, veille stratégique, Formations et optimisation des processus informationnels</p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn btn-primary">Voir mes projets</a>
+      <a href="#contact" class="btn btn-outline">Me contacter</a>
     </div>
-    <a href="assets/CV_Narcisse_NOUEMOU.pdf" class="download-cv" download>
-      <i class="fas fa-download"></i> Télécharger mon CV
-    </a>
   </div>
-</header>
+</section>
 
-<div class="container">
-  <div class="main-content">
-    <div class="left-column">
-      <section class="card">
-        <h2>PROFIL</h2>
-        <p>Étudiant en Master 2 Gestion Stratégique de l'Information, spécialisé dans la gestion documentaire, la veille stratégique et l'optimisation des processus informationnels. Passionné par la transformation digitale et l'innovation dans la gestion de l'information.</p>
-      </section>
-
-      <section class="card">
-        <h2>EXPÉRIENCES PROFESSIONNELLES</h2>
-        
-        <h3>Stage en ingénierie documentaire</h3>
-        <span class="date">2025 - 893 Degrés, Saint-Denis</span>
-        <ul>
-          <li>Gestion de projet d'intégration éthique de l'IA</li>
-          <li>Transformation numérique, supports et formation</li>
-          <li>Optimisation des processus documentaires</li>
-        </ul>
-
-        <h3>Archiviste intérimaire</h3>
-        <span class="date">2020-2022 - Cabinet MIDJAWA, Cotonou</span>
-        <ul>
-          <li>Collecte, numérisation et indexation de documents</li>
-          <li>Mise en place d'un système de classification</li>
-          <li>Gestion des archives courantes et intermédiaires</li>
-        </ul>
-
-        <h3>Archiviste</h3>
-        <span class="date">2019-2020 - ONG Urgence Développement, Cotonou</span>
-        <ul>
-          <li>Inventaire et collecte du fonds documentaire</li>
-          <li>Création de référentiels et répertoires structurés</li>
-          <li>Organisation et préservation des archives</li>
-        </ul>
-
-        <h3>Chef d'équipe adjoint</h3>
-        <span class="date">2018-2019 - Grand Séminaire Saint-Gall, Ouidah</span>
-        <ul>
-          <li>Coordination d'une équipe de 8 personnes</li>
-          <li>Mise en œuvre de procédures documentaires</li>
-          <li>Supervision des activités de gestion documentaire</li>
-        </ul>
-      </section>
-
-      <section class="card">
-        <h2>FORMATIONS</h2>
-        
-        <h3>Master 2 Gestion Stratégique de l'Information</h3>
-        <span class="date">2025 - Université Paris 8</span>
-        
-        <h3>Master 1 Gestion Stratégique de l'Information</h3>
-        <span class="date">2024 - Université Paris 8</span>
-        
-        <h3>Formation en Gestion de projet</h3>
-        <span class="date">2023 - Campus GROUPE AFD</span>
-        
-        <h3>Licence en Archivistique et Documentation</h3>
-        <span class="date">2015-2018 - Grand Séminaire Saint Paul de Djimè, Bénin</span>
-      </section>
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-title">
+      <h2>À Propos</h2>
+      <p>Découvrez mon parcours et ma passion pour la gestion de l'information</p>
     </div>
+    <div class="about-content">
+      <div class="about-text">
+        <h3>Qui suis-je ?</h3>
+        <p>Je suis Narcisse NOUEMOU, étudiant en Master 2 Gestion Stratégique de l'Information à l'Université Paris 8. Passionné par la transformation digitale et l'innovation dans la gestion de l'information, je me spécialise dans la gestion documentaire, la veille stratégique et l'optimisation des processus informationnels.</p>
+        <p>Mon objectif est de concevoir et mettre en œuvre des solutions informationnelles efficaces qui répondent aux besoins spécifiques des organisations tout en respectant les normes et standards professionnels.</p>
+        <p>Curieux et autodidacte, je suis constamment à la recherche de nouvelles technologies et méthodologies pour améliorer la gestion et la valorisation de l'information.</p>
+      </div>
+      <div class="about-image">
+        <img src="assets/profil.jpeg" alt="Narcisse NOUEMOU">
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class="right-column">
-      <section class="card">
-        <h2>COMPÉTENCES</h2>
-        
-        <div class="skills-grid">
-          <div class="skill-category">
-            <h4><i class="fas fa-folder-open"></i> Gestion documentaire</h4>
-            <div class="tags">
-              <span class="tag">Classement</span>
-              <span class="tag">Archivage</span>
-              <span class="tag">Numérisation</span>
-              <span class="tag">Politiques documentaires</span>
-            </div>
+<section class="skills" id="skills">
+  <div class="container">
+    <div class="section-title">
+      <h2>Mes Compétences</h2>
+      <p>Un ensemble de compétences techniques et managériales au service de l'information</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3><i class="fas fa-folder-open"></i> Gestion Documentaire</h3>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>Classement et Archivage</span>
+            <span>95%</span>
           </div>
-          
-          <div class="skill-category">
-            <h4><i class="fas fa-desktop"></i> GED</h4>
-            <div class="tags">
-              <span class="tag">Alfresco</span>
-              <span class="tag">JLB</span>
-              <span class="tag">Workflows</span>
-              <span class="tag">Droits d'accès</span>
-            </div>
-          </div>
-          
-          <div class="skill-category">
-            <h4><i class="fas fa-chart-line"></i> Veille stratégique</h4>
-            <div class="tags">
-              <span class="tag">KB Crawl</span>
-              <span class="tag">Curation</span>
-              <span class="tag">Analyse</span>
-              <span class="tag">Alertes</span>
-            </div>
-          </div>
-          
-          <div class="skill-category">
-            <h4><i class="fas fa-tools"></i> Outils</h4>
-            <div class="tags">
-              <span class="tag">Archifiltre</span>
-              <span class="tag">M365</span>
-              <span class="tag">Flux RSS</span>
-              <span class="tag">Google Alerts</span>
-            </div>
-          </div>
-          
-          <div class="skill-category">
-            <h4><i class="fas fa-project-diagram"></i> Gestion de projet</h4>
-            <div class="tags">
-              <span class="tag">Déploiement GED</span>
-              <span class="tag">Conduite du changement</span>
-              <span class="tag">Formation</span>
-              <span class="tag">Support</span>
-            </div>
-          </div>
-          
-          <div class="skill-category">
-            <h4><i class="fas fa-language"></i> Langues</h4>
-            <div class="tags">
-              <span class="tag">Français (Langue maternelle)</span>
-              <span class="tag">Anglais (Intermédiaire)</span>
-              <span class="tag">Espagnol (Débutant)</span>
-            </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 95%;"></div>
           </div>
         </div>
-      </section>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>Politiques documentaires</span>
+            <span>90%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 90%;"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>Numérisation</span>
+            <span>85%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 85%;"></div>
+          </div>
+        </div>
+      </div>
 
-      <section class="card">
-        <h2>CENTRES D'INTÉRÊT</h2>
-        <ul>
-          <li>Webinaires sur la gestion documentaire et l'archivage digital</li>
-          <li>Technologies de valorisation des collections et fonds documentaires</li>
-          <li>Participation aux salons professionnels (Documation 2025)</li>
-          <li>Veille sur les innovations en intelligence informationnelle</li>
-        </ul>
-      </section>
+      <div class="skill-category">
+        <h3><i class="fas fa-desktop"></i> GED & Technologies</h3>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>Alfresco</span>
+            <span>90%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 90%;"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>JLB</span>
+            <span>85%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 85%;"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>M365</span>
+            <span>80%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 80%;"></div>
+          </div>
+        </div>
+      </div>
 
-      <section class="card">
-        <h2>RÉALISATIONS</h2>
-        <ul>
-          <li>Mise en place d'un système de gestion documentaire pour un cabinet juridique</li>
-          <li>Conception d'un plan de classement pour **Les Femmes au Coeur D'Or**</li>
-          <li>Développement d'une stratégie de veille informationnelle</li>
-          <li>Animation d'ateliers de formation aux outils GED</li>
-          <li>Conception et Animation d'Ateliers de formation sur les Fondamentaux et les Usages éthiques de L'IA</li>
-        </ul>
-      </section>
+      <div class="skill-category">
+        <h3><i class="fas fa-chart-line"></i> Veille Stratégique</h3>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>KB Crawl</span>
+            <span>85%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 85%;"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>Analyse</span>
+            <span>90%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 90%;"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>Reporting</span>
+            <span>88%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 88%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3><i class="fas fa-project-diagram"></i> Gestion de Projet</h3>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>Conduite du changement</span>
+            <span>85%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 85%;"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>Formation</span>
+            <span>90%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 90%;"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>Support utilisateur</span>
+            <span>92%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 92%;"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <section class="contact">
-    <h2>CONTACT</h2>
-    <div class="contact-info">
-      <div class="contact-item">
-        <i class="fas fa-envelope"></i>
-        <a href="mailto:narcissen92@gmail.com">narcissen92@gmail.com</a>
+<section class="projects" id="projects">
+  <div class="container">
+    <div class="section-title">
+      <h2>Mes Projets</h2>
+      <p>Réalisations professionnelles et études de cas en gestion de l'information</p>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-image">
+          <img src="assets/projet1.jpg" alt="Projet GED">
+        </div>
+        <div class="project-content">
+          <h3>Déploiement d'une GED</h3>
+          <p>Mise en place d'un système de Gestion Electronique de Documents pour une ONG humanitaire, incluant migration des archives et formation des utilisateurs.</p>
+          <div class="project-tags">
+            <span class="project-tag">GED</span>
+            <span class="project-tag">Alfresco</span>
+            <span class="project-tag">Migration</span>
+          </div>
+          <a href="#" class="project-link">Voir le projet <i class="fas fa-arrow-right"></i></a>
+        </div>
       </div>
-      <div class="contact-item">
-        <i class="fas fa-phone"></i>
-        <a href="tel:+33780795874">07 80 79 58 74</a>
+
+      <div class="project-card">
+        <div class="project-image">
+          <img src="assets/projet2.jpeg" alt="Projet Veille">
+        </div>
+        <div class="project-content">
+          <h3>Système de Veille Stratégique</h3>
+          <p>Conception et mise en œuvre d'un dispositif de veille informationnelle pour une ONG internationale, avec tableaux de bord et alertes automatisées.</p>
+          <div class="project-tags">
+            <span class="project-tag">Veille</span>
+            <span class="project-tag">KB Crawl</span>
+            <span class="project-tag">Automatisation</span>
+          </div>
+          <a href="#" class="project-link">Voir le projet <i class="fas fa-arrow-right"></i></a>
+        </div>
       </div>
-      <div class="contact-item">
-        <i class="fas fa-map-marker-alt"></i>
-        <span>Île-de-France, France</span>
-      </div>
-      <div class="contact-item">
-        <i class="fab fa-linkedin"></i>
-        <a href="https:www.linkedin.com/in/narcisse-nouemou/" target="_blank">LinkedIn</a>
+
+      <div class="project-card">
+        <div class="project-image">
+          <img src="assets/projet3.jpeg" alt="Formation IA">
+        </div>
+        <div class="project-content">
+          <h3>Ateliers de formations sur l'IA</h3>
+          <p>Conception et animation d'ateliers de formations sur les fonfamentaux de l'Intelligence artificielle et l'art du prompt en lien avec l'insertion professionnelle.</p>
+          <div class="project-tags">
+            <span class="project-tag">Intelligence Artificielle</span>
+            <span class="project-tag">Prompt engineering</span>
+            <span class="project-tag">Insertion professionnelle</span>
+          </div>
+          <a href="#" class="project-link">Voir le projet <i class="fas fa-arrow-right"></i></a>
+        </div>
       </div>
     </div>
-  </section>
-</div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-title">
+      <h2>Contact</h2>
+      <p>N'hésitez pas à me contacter pour discuter de vos projets</p>
+    </div>
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Email</h4>
+            <p>narcissen92@gmail.com</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Téléphone</h4>
+            <p>07 80 79 58 74</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Localisation</h4>
+            <p>Île-de-France, France</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fab fa-linkedin"></i>
+          </div>
+          <div class="contact-details">
+            <h4>LinkedIn</h4>
+            <p>/in/narcisse-n-ouemou</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <form>
+          <div class="form-group">
+            <label for="name">Nom complet</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">Sujet</label>
+            <input type="text" id="subject" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Envoyer le message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer>
-  <div class="container">
-    <p>© 2025 Narcisse NOUEMOU - Gestionnaire de l'Information</p>
+  <div class="container footer-content">
+    <div class="logo">
+      <img src="assets/Logo_Narcisse.jpeg" alt="Logo Narcisse NOUEMOU">
+      <span>Narcisse NOUEMOU</span>
+    </div>
+    <p>Gestionnaire de l'Information & Archiviste Digital</p>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fas fa-envelope"></i></a>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Narcisse NOUEMOU. Tous droits réservés.</p>
+    </div>
   </div>
 </footer>
 
