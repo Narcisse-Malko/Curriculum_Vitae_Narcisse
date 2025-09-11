@@ -8,4 +8,4 @@ Je suis actuellement en [Master 2 GSI](https://humanites-numeriques.univ-paris8.
 
 Je suis passionné de Lecture et d'écriture. 
 
-J'aime les sports d'équipe tels que le football. 
+J'aime les sports d'équipe tels que le football.
