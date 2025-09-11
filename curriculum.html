@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV - Narcisse N'OUEMOU</title>
+  <style>
+    :root {
+      --primary: #2c3e50;  /* Bleu foncé du CV */
+      --secondary: #34495e; 
+      --accent: #ecf0f1;   /* Gris clair */
+      --text: #2c2c2c;
+      --white: #fff;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--accent);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--primary);
+      color: var(--white);
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    header p {
+      margin-top: 5px;
+      font-size: 1.2em;
+      color: #dcdcdc;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 30px auto;
+      background: var(--white);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      border-left: 5px solid var(--primary);
+      padding-left: 10px;
+      margin-top: 40px;
+      font-size: 1.5em;
+      color: var(--primary);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin: 8px 0;
+      padding-left: 15px;
+      position: relative;
+    }
+
+    ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .experience p, .education p {
+      margin: 8px 0;
+    }
+
+    .contact {
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px;
+      background: var(--secondary);
+      border-radius: 8px;
+      color: var(--white);
+    }
+
+    .contact a {
+      color: #f1c40f;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.8em;
+      }
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+   <nav>
+            <div class="logo">
+                <img src="assets/Logo_Narcisse.jpg" alt="Logo_Narcisse_CV" style="width: 30px; height: 30px; vertical-align: middle; margin-right: 8px;">
+                CV_Narcisse
+            </div>
+            <ul>
+                <li><a href="index.html">PRESENTATION</a></li>
+                <li><a href="curriculum.html">CURRICULUM VITAE</a></li>
+                <li><a href="blog.html">BLOG</a></li>
+            </ul>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <script>
+                function toggleMenu() {
+                    const navMenu = document.querySelector('nav ul');
+                    navMenu.classList.toggle('active');
+                }
+            </script>
+            <style>
+                .menu-toggle {
+                    display: none;
+                    flex-direction: column;
+                    cursor: pointer;
+                    padding: 10px;
+                    margin-left: auto;
+                }
+                
+                .menu-toggle span {
+                    width: 25px;
+                    height: 3px;
+                    background-color: #333;
+                    margin: 2px 0;
+                    transition: 0.4s;
+                }
+                
+                @media screen and (max-width: 768px) {
+                    .menu-toggle {
+                        display: flex;
+                    }
+                    
+                    nav ul {
+                        display: none;
+                        width: 100%;
+                        position: absolute;
+                        top: 60px;
+                        left: 0;
+                        background-color: white;
+                        flex-direction: column;
+                        padding: 20px 0;
+                        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                    }
+                    
+                    nav ul.active {
+                        display: flex;
+                    }
+                    
+                    nav ul li {
+                        margin: 10px 0;
+                    }
+                }
+            </style>
+    
+        </nav> 
+  <h1>Narcisse N’OUEMOU</h1>
+  <p>Apprenti Gestionnaire Documentaire</p>
+</header>
+
+<div class="container">
+  <section>
+    <h2>PROFIL</h2>
+    <p>Étudiant en Master 2 Gestion Stratégique de l’Information, avec une expertise en gestion documentaire, 
+    veille stratégique et optimisation des processus.</p>
+  </section>
+
+  <section>
+    <h2>CV</h2>
+   <a href="CV_Gestionnaire_Documentaire_Narcisse_NOUEMOU.pdf" target="asset">
+     Visualiser mon CV</a>
+  </section> 
+</body>
+</html>
+
