@@ -3,68 +3,223 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV Narcisse NOUEMOU</title>
+  <title>CV Narcisse NOUEMOU - Gestionnaire de l'Information</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #2c3e50;  /* Bleu foncé du CV */
-      --secondary: #34495e; 
-      --accent: #ecf0f1;   /* Gris clair */
-      --text: #2c2c2c;
-      --white: #fff;
+      --primary: #2c3e50;
+      --secondary: #3498db;
+      --accent: #e74c3c;
+      --light: #ecf0f1;
+      --dark: #2c2c2c;
+      --success: #27ae60;
+      --background: #f8f9fa;
+      --card-bg: #ffffff;
+      --text: #333333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--accent);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--background);
       color: var(--text);
       line-height: 1.6;
     }
 
-    header {
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Navigation */
+    nav {
       background: var(--primary);
-      color: var(--white);
-      padding: 40px 20px;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+      object-fit: cover;
+      border: 2px solid var(--secondary);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 25px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+
+    nav ul li a:hover {
+      color: var(--secondary);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 3px 0;
+      transition: 0.4s;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 60px 0;
       text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .profile-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      margin-bottom: 20px;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
     header h1 {
-      margin: 0;
-      font-size: 2.5em;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
     }
 
-    header p {
-      margin-top: 5px;
-      font-size: 1.2em;
-      color: #dcdcdc;
+    header .title {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 20px;
     }
 
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: 30px auto;
-      background: var(--white);
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    .header-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 8px 15px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .badge i {
+      margin-right: 5px;
+    }
+
+    /* Main content */
+    .main-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .main-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
 
     h2 {
-      border-left: 5px solid var(--primary);
-      padding-left: 10px;
-      margin-top: 40px;
-      font-size: 1.5em;
       color: var(--primary);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--secondary);
+      display: inline-block;
+    }
+
+    h3 {
+      color: var(--secondary);
+      margin: 15px 0 5px;
+    }
+
+    .date {
+      color: var(--accent);
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      display: block;
     }
 
     ul {
       list-style: none;
-      padding: 0;
+      margin: 15px 0;
     }
 
     ul li {
-      margin: 8px 0;
-      padding-left: 15px;
+      margin: 10px 0;
+      padding-left: 25px;
       position: relative;
     }
 
@@ -72,194 +227,387 @@
       content: "•";
       position: absolute;
       left: 0;
-      color: var(--primary);
+      color: var(--secondary);
       font-weight: bold;
+      font-size: 1.2rem;
     }
 
-    .experience p, .education p {
-      margin: 8px 0;
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
     }
 
+    .skill-category {
+      margin-bottom: 20px;
+    }
+
+    .skill-category h4 {
+      color: var(--primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .skill-category h4 i {
+      margin-right: 10px;
+      color: var(--secondary);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background: var(--light);
+      color: var(--primary);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    /* Contact section */
     .contact {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 40px 0;
       text-align: center;
+      border-radius: 10px;
       margin-top: 30px;
-      padding: 20px;
-      background: var(--secondary);
-      border-radius: 8px;
-      color: var(--white);
     }
 
-    .contact a {
-      color: #f1c40f;
+    .contact h2 {
+      color: white;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .contact-item i {
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+
+    .contact-item a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-item a:hover {
+      color: var(--accent);
+    }
+
+    /* Download CV button */
+    .download-cv {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 12px 25px;
+      border-radius: 50px;
       text-decoration: none;
       font-weight: bold;
+      margin-top: 20px;
+      transition: background 0.3s, transform 0.3s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .download-cv:hover {
+      background: #c0392b;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+      color: var(--dark);
+      font-size: 0.9rem;
     }
 
     /* Responsive */
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 1.8em;
+      .menu-toggle {
+        display: flex;
       }
-      .container {
+      
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary);
+        flex-direction: column;
         padding: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
+      
+      nav ul.active {
+        display: flex;
+      }
+      
+      nav ul li {
+        margin: 10px 0;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .header-badges {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-info {
+        flex-direction: column;
+        gap: 15px;
       }
     }
   </style>
 </head>
 <body>
 
+<nav>
+  <div class="container">
+    <div class="logo">
+      <img src="assets/Logo_Narcisse.jpeg" alt="Logo Narcisse NOUEMOU">
+      <span>Narcisse NOUEMOU</span>
+    </div>
+    <ul>
+      <li><a href="index.html">PRÉSENTATION</a></li>
+      <li><a href="curriculum.html">CURRICULUM VITAE</a></li>
+      <li><a href="blog.html">BLOG</a></li>
+    </ul>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
 <header>
-   <nav>
-            <div class="logo">
-                <img src="assets/Logo_Narcisse.jpeg" alt="Logo_Narcisse_CV" style="width: 30px; height: 30px; vertical-align: middle; margin-right: 8px;">
-                CV_Narcisse
-            </div>
-            <ul>
-                <li><a href="index.html">PRESENTATION</a></li>
-                <li><a href="curriculum.html">CURRICULUM VITAE</a></li>
-                <li><a href="blog.html">BLOG</a></li>
-            </ul>
-            <div class="menu-toggle" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <script>
-                function toggleMenu() {
-                    const navMenu = document.querySelector('nav ul');
-                    navMenu.classList.toggle('active');
-                }
-            </script>
-            <style>
-                .menu-toggle {
-                    display: none;
-                    flex-direction: column;
-                    cursor: pointer;
-                    padding: 10px;
-                    margin-left: auto;
-                }
-                
-                .menu-toggle span {
-                    width: 25px;
-                    height: 3px;
-                    background-color: #333;
-                    margin: 2px 0;
-                    transition: 0.4s;
-                }
-                
-                @media screen and (max-width: 768px) {
-                    .menu-toggle {
-                        display: flex;
-                    }
-                    
-                    nav ul {
-                        display: none;
-                        width: 100%;
-                        position: absolute;
-                        top: 60px;
-                        left: 0;
-                        background-color: white;
-                        flex-direction: column;
-                        padding: 20px 0;
-                        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-                    }
-                    
-                    nav ul.active {
-                        display: flex;
-                    }
-                    
-                    nav ul li {
-                        margin: 10px 0;
-                    }
-                }
-            </style>
-    
-        </nav> 
-  <h1>Narcisse N’OUEMOU</h1>
-  <p>Apprenti Gestionnaire Documentaire</p>
+  <div class="container profile-container">
+    <img src="assets/profil.jpg" alt="Narcisse NOUEMOU" class="profile-img">
+    <h1>Narcisse NOUEMOU</h1>
+    <p class="title">Gestionnaire de l'Information & Archiviste Digital</p>
+    <div class="header-badges">
+      <div class="badge"><i class="fas fa-graduation-cap"></i> Master 2 GSI</div>
+      <div class="badge"><i class="fas fa-map-marker-alt"></i> Île-de-France</div>
+      <div class="badge"><i class="fas fa-search"></i> Veille Stratégique</div>
+    </div>
+    <a href="assets/CV_Narcisse_NOUEMOU.pdf" class="download-cv" download>
+      <i class="fas fa-download"></i> Télécharger mon CV
+    </a>
+  </div>
 </header>
 
 <div class="container">
-  <section>
-    <h2>PROFIL</h2>
-    <p>Étudiant en Master 2 Gestion Stratégique de l’Information, avec une expertise en gestion documentaire, 
-    veille stratégique et optimisation des processus.</p>
-  </section>
+  <div class="main-content">
+    <div class="left-column">
+      <section class="card">
+        <h2>PROFIL</h2>
+        <p>Étudiant en Master 2 Gestion Stratégique de l'Information, spécialisé dans la gestion documentaire, la veille stratégique et l'optimisation des processus informationnels. Passionné par la transformation digitale et l'innovation dans la gestion de l'information.</p>
+      </section>
 
-  <section>
-    <h2>COMPETENCES</h2>
-    <ul>
-      <li><strong>Gestion de projet :</strong> Déploiement GED, Conduite du changement, Formation, Support</li>
-      <li><strong>GED :</strong> Alfresco & JLB, workflows, droits d’accès, collaboration numérique</li>
-      <li><strong>Gestion documentaire :</strong> Arborescences, politiques documentaires, archivage</li>
-      <li><strong>Veille :</strong> KB Crawl, curation, analyse, alertes</li>
-      <li><strong>Outils :</strong> Archifiltre, M365, Flux RSS, Google Alerts</li>
-    </ul>
-  </section>
+      <section class="card">
+        <h2>EXPÉRIENCES PROFESSIONNELLES</h2>
+        
+        <h3>Stage en ingénierie documentaire</h3>
+        <span class="date">2025 - 893 Degrés, Saint-Denis</span>
+        <ul>
+          <li>Gestion de projet d'intégration éthique de l'IA</li>
+          <li>Transformation numérique, supports et formation</li>
+          <li>Optimisation des processus documentaires</li>
+        </ul>
 
-  <section class="experience">
-    <h2>EXPERIENCES PROFESSIONNELLES</h2>
-    <p><strong>Stage en ingénierie documentaire</strong> – 893 Degrés, Saint-Denis (2025)</p>
-    <ul>
-      <li>Gestion de projet intégration éthique de l’IA</li>
-      <li>Transformation numérique, supports et formation</li>
-    </ul>
+        <h3>Archiviste intérimaire</h3>
+        <span class="date">2020-2022 - Cabinet MIDJAWA, Cotonou</span>
+        <ul>
+          <li>Collecte, numérisation et indexation de documents</li>
+          <li>Mise en place d'un système de classification</li>
+          <li>Gestion des archives courantes et intermédiaires</li>
+        </ul>
 
-    <p><strong>Archiviste intérimaire</strong> – Cabinet MIDJAWA, Cotonou (2020 - 2022)</p>
-    <ul>
-      <li>Collecte, numérisation et indexation</li>
-      <li>Mise en place d’un système de classification</li>
-    </ul>
+        <h3>Archiviste</h3>
+        <span class="date">2019-2020 - ONG Urgence Développement, Cotonou</span>
+        <ul>
+          <li>Inventaire et collecte du fonds documentaire</li>
+          <li>Création de référentiels et répertoires structurés</li>
+          <li>Organisation et préservation des archives</li>
+        </ul>
 
-    <p><strong>Archiviste</strong> – ONG Urgence Développement, Cotonou (2019 - 2020)</p>
-    <ul>
-      <li>Inventaire et collecte du fonds</li>
-      <li>Création de référentiels et répertoires structurés</li>
-    </ul>
+        <h3>Chef d'équipe adjoint</h3>
+        <span class="date">2018-2019 - Grand Séminaire Saint-Gall, Ouidah</span>
+        <ul>
+          <li>Coordination d'une équipe de 8 personnes</li>
+          <li>Mise en œuvre de procédures documentaires</li>
+          <li>Supervision des activités de gestion documentaire</li>
+        </ul>
+      </section>
 
-    <p><strong>Chef d’équipe adjoint</strong> – Grand Séminaire Saint-Gall, Ouidah (2018 - 2019)</p>
-    <ul>
-      <li>Coordination d’une équipe de 8 personnes</li>
-      <li>Mise en œuvre de procédures documentaires</li>
-    </ul>
-  </section>
+      <section class="card">
+        <h2>FORMATIONS</h2>
+        
+        <h3>Master 2 Gestion Stratégique de l'Information</h3>
+        <span class="date">2025 - Université Paris 8</span>
+        
+        <h3>Master 1 Gestion Stratégique de l'Information</h3>
+        <span class="date">2024 - Université Paris 8</span>
+        
+        <h3>Formation en Gestion de projet</h3>
+        <span class="date">2023 - Campus GROUPE AFD</span>
+        
+        <h3>Licence en Archivistique et Documentation</h3>
+        <span class="date">2015-2018 - Grand Séminaire Saint Paul de Djimè, Bénin</span>
+      </section>
+    </div>
 
-  <section class="education">
-    <h2>DIPLÔMES & FORMATIONS</h2>
-    <ul>
-      <li><strong>Master 2 Gestion Stratégique de l’Information</strong> – Université Paris 8 (2025)</li>
-      <li><strong>Master 1 Gestion Stratégique de l’Information</strong> – Université Paris 8 (2024)</li>
-      <li><strong>Formation en Gestion de projet</strong> - Campus GROUPE AFD (2023)</li>
-      <li><strong>Licence en Archivistique et Documentation</strong> – Grand Séminaire Saint Paul de Djimè, Bénin (2015-2018)</li>
-    </ul>
-  </section>
+    <div class="right-column">
+      <section class="card">
+        <h2>COMPÉTENCES</h2>
+        
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h4><i class="fas fa-folder-open"></i> Gestion documentaire</h4>
+            <div class="tags">
+              <span class="tag">Classement</span>
+              <span class="tag">Archivage</span>
+              <span class="tag">Numérisation</span>
+              <span class="tag">Politiques documentaires</span>
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <h4><i class="fas fa-desktop"></i> GED</h4>
+            <div class="tags">
+              <span class="tag">Alfresco</span>
+              <span class="tag">JLB</span>
+              <span class="tag">Workflows</span>
+              <span class="tag">Droits d'accès</span>
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <h4><i class="fas fa-chart-line"></i> Veille stratégique</h4>
+            <div class="tags">
+              <span class="tag">KB Crawl</span>
+              <span class="tag">Curation</span>
+              <span class="tag">Analyse</span>
+              <span class="tag">Alertes</span>
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <h4><i class="fas fa-tools"></i> Outils</h4>
+            <div class="tags">
+              <span class="tag">Archifiltre</span>
+              <span class="tag">M365</span>
+              <span class="tag">Flux RSS</span>
+              <span class="tag">Google Alerts</span>
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <h4><i class="fas fa-project-diagram"></i> Gestion de projet</h4>
+            <div class="tags">
+              <span class="tag">Déploiement GED</span>
+              <span class="tag">Conduite du changement</span>
+              <span class="tag">Formation</span>
+              <span class="tag">Support</span>
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <h4><i class="fas fa-language"></i> Langues</h4>
+            <div class="tags">
+              <span class="tag">Français (Langue maternelle)</span>
+              <span class="tag">Anglais (Intermédiaire)</span>
+              <span class="tag">Espagnol (Débutant)</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <section class="Langues parlées">
-    <h2>LANGUES</h2>
-    <ul>
-      <li>Français (Langue maternelle)</li>
-      <li>Anglais (Intermédiaire)</li>
-      <li>Espagnol (Débutant)</li>
-    </ul>
-  </section>
+      <section class="card">
+        <h2>CENTRES D'INTÉRÊT</h2>
+        <ul>
+          <li>Webinaires sur la gestion documentaire et l'archivage digital</li>
+          <li>Technologies de valorisation des collections et fonds documentaires</li>
+          <li>Participation aux salons professionnels (Documation 2025)</li>
+          <li>Veille sur les innovations en intelligence informationnelle</li>
+        </ul>
+      </section>
 
-  <section class="hobbies">
-    <h2>CENTRES D'INTERÊT</h2>
-    <ul>
-      <li>Webinaires sur la gestion documentaire</li>
-      <li>Technologies de valorisation des collections</li>
-      <li>Participation au salon Documation 2025</li>
-    </ul>
-  </section>
+      <section class="card">
+        <h2>RÉALISATIONS</h2>
+        <ul>
+          <li>Mise en place d'un système de gestion documentaire pour un cabinet juridique</li>
+          <li>Conception d'un plan de classement pour une ONG internationale</li>
+          <li>Développement d'une stratégie de veille informationnelle</li>
+          <li>Animation d'ateliers de formation aux outils GED</li>
+        </ul>
+      </section>
+    </div>
+  </div>
 
   <section class="contact">
     <h2>CONTACT</h2>
-    <p>Email : <a href="mailto:narcissen92@gmail.com">narcissen92@gmail.com</a></p>
-    <p>Téléphone : 07 80 79 58 74</p>
-    <p>Localisation : Île-de-France</p>
-    <p>LinkedIn : <a href="https://www.linkedin.com/in/narcisse-n-ouemou" target="blank">Mon Profil</a></p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:narcissen92@gmail.com">narcissen92@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-phone"></i>
+        <a href="tel:+33780795874">07 80 79 58 74</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Île-de-France, France</span>
+      </div>
+      <div class="contact-item">
+        <i class="fab fa-linkedin"></i>
+        <a href="https://www.linkedin.com/in/narcisse-n-ouemou" target="_blank">LinkedIn</a>
+      </div>
+    </div>
   </section>
 </div>
+
+<footer>
+  <div class="container">
+    <p>© 2023 Narcisse NOUEMOU - Gestionnaire de l'Information</p>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const navMenu = document.querySelector('nav ul');
+    navMenu.classList.toggle('active');
+  }
+</script>
 
 </body>
 </html>
