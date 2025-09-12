@@ -4,7 +4,396 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio - Narcisse NOUEMOU | Gestionnaire de l'Information</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+  <style>
+    :root {
+      --primary: #2c3e50;
+      --secondary: #3498db;
+      --accent: #e74c3c;
+      --light: #ecf0f1;
+      --dark: #2c2c2c;
+      --success: #27ae60;
+      --background: #f8f9fa;
+      --card-bg: #ffffff;
+      --text: #333333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Navigation */
+    nav {
+      background: var(--primary);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+      object-fit: cover;
+      border: 2px solid var(--secondary);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 25px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+
+    nav ul li a:hover {
+      color: var(--secondary);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 3px 0;
+      transition: 0.4s;
+    }
+
+    /* Hero Section */
+    .portfolio-hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .portfolio-hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .portfolio-hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    /* Portfolio Section */
+    .portfolio {
+      padding: 40px 0 80px;
+    }
+
+    .portfolio-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .filter-btn {
+      background: var(--light);
+      color: var(--primary);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--secondary);
+      color: white;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .portfolio-item {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-10px);
+    }
+
+    .portfolio-image {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .portfolio-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .portfolio-item:hover .portfolio-image img {
+      transform: scale(1.1);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+
+    .portfolio-actions {
+      display: flex;
+      gap: 15px;
+    }
+
+    .portfolio-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--secondary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .portfolio-btn:hover {
+      background: var(--accent);
+    }
+
+    .portfolio-content {
+      padding: 20px;
+    }
+
+    .portfolio-content h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .portfolio-content p {
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    .portfolio-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .portfolio-tag {
+      background: var(--light);
+      color: var(--primary);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      overflow: auto;
+    }
+
+    .modal-content {
+      background: white;
+      margin: 5% auto;
+      width: 80%;
+      max-width: 900px;
+      border-radius: 10px;
+      position: relative;
+      padding: 20px;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5rem;
+      color: var(--dark);
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .modal-body iframe, .modal-body video {
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary);
+      color: white;
+      padding: 40px 0 20px;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      font-size: 1.2rem;
+      transition: background 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--secondary);
+    }
+
+    .copyright {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+      
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
+      
+      nav ul.active {
+        display: flex;
+      }
+      
+      nav ul li {
+        margin: 10px 0;
+      }
+
+      .portfolio-hero h1 {
+        font-size: 2rem;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-content {
+        width: 95%;
+        margin: 10% auto;
+      }
+
+      .modal-body iframe, .modal-body video {
+        height: 300px;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -30,214 +419,265 @@
 <section class="portfolio-hero">
   <div class="container">
     <h1>Mon Portfolio</h1>
-    <p>Découvrez mes réalisations en gestion de l'information, formation en IA, productions graphiques et conduite du changement</p>
+    <p>Découvrez mes réalisations en gestion de l'information, formation et conception graphique</p>
   </div>
 </section>
 
-<section class="container">
-  <div class="portfolio-filters">
-    <button class="filter-btn active" data-filter="all">Tous</button>
-    <button class="filter-btn" data-filter="formation">Formation IA</button>
-    <button class="filter-btn" data-filter="graphisme">Productions Graphiques</button>
-    <button class="filter-btn" data-filter="changement">Conduite du Changement</button>
-  </div>
-
-  <div class="portfolio-grid">
-    <!-- Formation IA -->
-    <div class="portfolio-item" data-category="formation">
-      <div class="portfolio-image">
-        <img src="assets/formation-ia.jpg" alt="Formation Intelligence Artificielle">
-        <span class="portfolio-badge">Formation</span>
-      </div>
-      <div class="portfolio-content">
-        <h3>Atelier d'initiation à l'IA</h3>
-        <p>Formation complète sur les fondamentaux de l'intelligence artificielle et ses applications dans la gestion de l'information.</p>
-        <div class="portfolio-tags">
-          <span class="portfolio-tag">IA</span>
-          <span class="portfolio-tag">Formation</span>
-          <span class="portfolio-tag">Gestion documentaire</span>
-        </div>
-        <div class="portfolio-links">
-          <a href="assets/atelier-ia-initiation.pdf" class="portfolio-link" download>
-            <i class="fas fa-download"></i> Télécharger PDF
-          </a>
-          <a href="#" class="portfolio-link">
-            <i class="fas fa-eye"></i> Voir détails
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="portfolio-item" data-category="formation">
-      <div class="portfolio-image">
-        <img src="assets/ia-avance.jpg" alt="Formation IA Avancée">
-        <span class="portfolio-badge">Formation</span>
-      </div>
-      <div class="portfolio-content">
-        <h3>IA Avancée pour la GED</h3>
-        <p>Atelier spécialisé sur l'intégration des technologies d'IA dans les systèmes de Gestion Electronique de Documents.</p>
-        <div class="portfolio-tags">
-          <span class="portfolio-tag">IA</span>
-          <span class="portfolio-tag">GED</span>
-          <span class="portfolio-tag">Automatisation</span>
-        </div>
-        <div class="portfolio-links">
-          <a href="assets/atelier-ia-ged.pdf" class="portfolio-link" download>
-            <i class="fas fa-download"></i> Télécharger PDF
-          </a>
-          <a href="#" class="portfolio-link">
-            <i class="fas fa-eye"></i> Voir détails
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="portfolio-item" data-category="formation">
-      <div class="portfolio-image">
-        <img src="assets/ethique-ia.jpg" alt="Formation Éthique IA">
-        <span class="portfolio-badge">Formation</span>
-      </div>
-      <div class="portfolio-content">
-        <h3>Éthique et IA</h3>
-        <p>Réflexion sur les enjeux éthiques de l'intelligence artificielle dans la gestion de l'information et la documentation.</p>
-        <div class="portfolio-tags">
-          <span class="portfolio-tag">IA</span>
-          <span class="portfolio-tag">Éthique</span>
-          <span class="portfolio-tag">Gouvernance</span>
-        </div>
-        <div class="portfolio-links">
-          <a href="assets/atelier-ethique-ia.pdf" class="portfolio-link" download>
-            <i class="fas fa-download"></i> Télécharger PDF
-          </a>
-          <a href="#" class="portfolio-link">
-            <i class="fas fa-eye"></i> Voir détails
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Productions Graphiques -->
-    <div class="portfolio-item" data-category="graphisme">
-      <div class="portfolio-image">
-        <img src="assets/actes-colloque.jpg" alt="Publication Actes de Colloque">
-        <span class="portfolio-badge">Design</span>
-      </div>
-      <div class="portfolio-content">
-        <h3>Publication d'Actes de Colloque</h3>
-        <p>Conception graphique et mise en page professionnelle des actes d'un colloque international sur la gestion de l'information.</p>
-        <div class="portfolio-tags">
-          <span class="portfolio-tag">Graphisme</span>
-          <span class="portfolio-tag">Publication</span>
-          <span class="portfolio-tag">Mise en page</span>
-        </div>
-        <div class="portfolio-links">
-          <a href="#" class="portfolio-link">
-            <i class="fas fa-eye"></i> Voir les détails
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="portfolio-item" data-category="graphisme">
-      <div class="portfolio-image">
-        <img src="assets/design-info.jpg" alt="Design d'Information">
-        <span class="portfolio-badge">Design</span>
-      </div>
-      <div class="portfolio-content">
-        <h3>Design d'Information</h3>
-        <p>Création de supports visuels pour la vulgarisation de concepts complexes en gestion de l'information.</p>
-        <div class="portfolio-tags">
-          <span class="portfolio-tag">Infographie</span>
-          <span class="portfolio-tag">Visualisation</span>
-          <span class="portfolio-tag">Communication</span>
-        </div>
-        <div class="portfolio-links">
-          <a href="#" class="portfolio-link">
-            <i class="fas fa-eye"></i> Voir les détails
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Conduite du Changement -->
-    <div class="portfolio-item" data-category="changement">
-      <div class="portfolio-image">
-        <img src="assets/conduite-changement.jpg" alt="Conduite du Changement">
-        <span class="portfolio-badge">Management</span>
-      </div>
-      <div class="portfolio-content">
-        <h3>Stratégie de Conduite du Changement</h3>
-        <p>Déploiement d'une stratégie complète pour l'implantation d'un nouveau système de GED dans une organisation.</p>
-        <div class="portfolio-tags">
-          <span class="portfolio-tag">Changement</span>
-          <span class="portfolio-tag">GED</span>
-          <span class="portfolio-tag">Stratégie</span>
-        </div>
-        <div class="portfolio-links">
-          <a href="assets/conduite-changement.pdf" class="portfolio-link" download>
-            <i class="fas fa-download"></i> Télécharger PDF
-          </a>
-          <a href="#" class="portfolio-link">
-            <i class="fas fa-eye"></i> Voir détails
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="portfolio-item" data-category="changement">
-      <div class="portfolio-image">
-        <img src="assets/formation-utilisateurs.jpg" alt="Formation Utilisateurs">
-        <span class="portfolio-badge">Management</span>
-      </div>
-      <div class="portfolio-content">
-        <h3>Programme de Formation Utilisateurs</h3>
-        <p>Conception et animation d'un programme de formation pour l'adoption d'un nouveau système documentaire.</p>
-        <div class="portfolio-tags">
-          <span class="portfolio-tag">Formation</span>
-          <span class="portfolio-tag">Adoption</span>
-          <span class="portfolio-tag">Utilisateurs</span>
-        </div>
-        <div class="portfolio-links">
-          <a href="assets/formation-utilisateurs.pdf" class="portfolio-link" download>
-            <i class="fas fa-download"></i> Télécharger PDF
-          </a>
-          <a href="#" class="portfolio-link">
-            <i class="fas fa-eye"></i> Voir détails
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="video-section">
+<section class="portfolio">
   <div class="container">
-    <div class="section-title">
-      <h2>Productions Graphiques</h2>
-      <p>Découvrez en vidéo le processus de création de mes productions graphiques pour publications académiques</p>
+    <div class="portfolio-filters">
+      <button class="filter-btn active" data-filter="all">Tous</button>
+      <button class="filter-btn" data-filter="formation">Formations IA</button>
+      <button class="filter-btn" data-filter="video">Vidéos</button>
+      <button class="filter-btn" data-filter="graphisme">Productions graphiques</button>
+      <button class="filter-btn" data-filter="conduite">Conduite du changement</button>
     </div>
-    <div class="video-container">
-      <div class="video-card">
-        <div class="video-player">
-          <iframe src="assets/Version_2" title="Production Graphique 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <div class="portfolio-grid">
+      <!-- Atelier IA 1 -->
+      <div class="portfolio-item" data-category="formation">
+        <div class="portfolio-image">
+          <img src="assets/formation-ia-1.jpg" alt="Atelier IA 1">
+          <div class="portfolio-overlay">
+            <div class="portfolio-actions">
+              <a href="assets/atelier-ia-1.pdf" class="portfolio-btn" target="_blank">
+                <i class="fas fa-eye"></i>
+              </a>
+              <a href="assets/atelier-ia-1.pdf" download class="portfolio-btn">
+                <i class="fas fa-download"></i>
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="video-content">
-          <h3>Processus de création d'actes de colloque</h3>
-          <p>Découvrez les étapes de conception et de réalisation graphique des actes d'un colloque international.</p>
+        <div class="portfolio-content">
+          <h3>Atelier IA : Fondements et enjeux</h3>
+          <p>Formation complète sur les bases de l'intelligence artificielle, ses applications et implications éthiques.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">IA</span>
+            <span class="portfolio-tag">Formation</span>
+            <span class="portfolio-tag">PDF</span>
+          </div>
+          <a href="#" class="portfolio-btn view-details" data-type="pdf" data-src="assets/atelier-ia-1.pdf">
+            Voir les détails
+          </a>
         </div>
       </div>
-      <div class="video-card">
-        <div class="video-player">
-          <iframe src="assets/Version_1" title="Production Graphique 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+      <!-- Atelier IA 2 -->
+      <div class="portfolio-item" data-category="formation">
+        <div class="portfolio-image">
+          <img src="assets/formation-ia-2.jpg" alt="Atelier IA 2">
+          <div class="portfolio-overlay">
+            <div class="portfolio-actions">
+              <a href="assets/atelier-ia-2.pdf" class="portfolio-btn" target="_blank">
+                <i class="fas fa-eye"></i>
+              </a>
+              <a href="assets/atelier-ia-2.pdf" download class="portfolio-btn">
+                <i class="fas fa-download"></i>
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="video-content">
-          <h3>Design d'information visuelle</h3>
-          <p>Présentation des techniques de visualisation de données complexes pour des publications académiques.</p>
+        <div class="portfolio-content">
+          <h3>Atelier IA : Applications pratiques</h3>
+          <p>Formation avancée sur l'implémentation de solutions IA dans les environnements professionnels.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">IA</span>
+            <span class="portfolio-tag">Formation</span>
+            <span class="portfolio-tag">PDF</span>
+          </div>
+          <a href="#" class="portfolio-btn view-details" data-type="pdf" data-src="assets/atelier-ia-2.pdf">
+            Voir les détails
+          </a>
+        </div>
+      </div>
+
+      <!-- Vidéo 1 -->
+      <div class="portfolio-item" data-category="video">
+        <div class="portfolio-image">
+          <img src="assets/video-1-thumb.jpg" alt="Vidéo 1">
+          <div class="portfolio-overlay">
+            <div class="portfolio-actions">
+              <a href="#" class="portfolio-btn play-video" data-src="assets/video-1.mp4">
+                <i class="fas fa-play"></i>
+              </a>
+              <a href="assets/video-1.mp4" download class="portfolio-btn">
+                <i class="fas fa-download"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-content">
+          <h3>Présentation IA en gestion documentaire</h3>
+          <p>Vidéo de présentation sur l'intégration de l'IA dans la gestion documentaire moderne.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Vidéo</span>
+            <span class="portfolio-tag">IA</span>
+            <span class="portfolio-tag">MP4</span>
+          </div>
+          <a href="#" class="portfolio-btn view-details" data-type="video" data-src="assets/video-1.mp4">
+            Voir les détails
+          </a>
+        </div>
+      </div>
+
+      <!-- Vidéo 2 -->
+      <div class="portfolio-item" data-category="video">
+        <div class="portfolio-image">
+          <img src="assets/video-2-thumb.jpg" alt="Vidéo 2">
+          <div class="portfolio-overlay">
+            <div class="portfolio-actions">
+              <a href="#" class="portfolio-btn play-video" data-src="assets/video-2.mp4">
+                <i class="fas fa-play"></i>
+              </a>
+              <a href="assets/video-2.mp4" download class="portfolio-btn">
+                <i class="fas fa-download"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-content">
+          <h3>Tutoriel outils IA</h3>
+          <p>Vidéo tutorielle sur l'utilisation des outils IA pour la veille informationnelle.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Vidéo</span>
+            <span class="portfolio-tag">Tutoriel</span>
+            <span class="portfolio-tag">MP4</span>
+          </div>
+          <a href="#" class="portfolio-btn view-details" data-type="video" data-src="assets/video-2.mp4">
+            Voir les détails
+          </a>
+        </div>
+      </div>
+
+      <!-- Production graphique 1 -->
+      <div class="portfolio-item" data-category="graphisme">
+        <div class="portfolio-image">
+          <img src="assets/colloque-design-1.jpg" alt="Design Colloque 1">
+          <div class="portfolio-overlay">
+            <div class="portfolio-actions">
+              <a href="assets/colloque-design-1.jpg" class="portfolio-btn" data-lightbox="graphisme">
+                <i class="fas fa-search-plus"></i>
+              </a>
+              <a href="assets/colloque-design-1.jpg" download class="portfolio-btn">
+                <i class="fas fa-download"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-content">
+          <h3>Publication actes de colloque - Couverture</h3>
+          <p>Conception graphique de la couverture des actes d'un colloque sur l'innovation informationnelle.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Graphisme</span>
+            <span class="portfolio-tag">Publication</span>
+            <span class="portfolio-tag">JPG</span>
+          </div>
+          <a href="assets/colloque-design-1.jpg" data-lightbox="graphisme" data-title="Publication actes de colloque - Couverture" class="portfolio-btn">
+            Voir les détails
+          </a>
+        </div>
+      </div>
+
+      <!-- Production graphique 2 -->
+      <div class="portfolio-item" data-category="graphisme">
+        <div class="portfolio-image">
+          <img src="assets/colloque-design-2.jpg" alt="Design Colloque 2">
+          <div class="portfolio-overlay">
+            <div class="portfolio-actions">
+              <a href="assets/colloque-design-2.jpg" class="portfolio-btn" data-lightbox="graphisme">
+                <i class="fas fa-search-plus"></i>
+              </a>
+              <a href="assets/colloque-design-2.jpg" download class="portfolio-btn">
+                <i class="fas fa-download"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-content">
+          <h3>Publication actes de colloque - Layout</h3>
+          <p>Maquette intérieure et mise en page des actes du colloque.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Graphisme</span>
+            <span class="portfolio-tag">Publication</span>
+            <span class="portfolio-tag">JPG</span>
+          </div>
+          <a href="assets/colloque-design-2.jpg" data-lightbox="graphisme" data-title="Publication actes de colloque - Layout" class="portfolio-btn">
+            Voir les détails
+          </a>
+        </div>
+      </div>
+
+      <!-- Conduite du changement 1 -->
+      <div class="portfolio-item" data-category="conduite">
+        <div class="portfolio-image">
+          <img src="assets/conduite-changement-1.jpg" alt="Conduite du changement 1">
+          <div class="portfolio-overlay">
+            <div class="portfolio-actions">
+              <a href="assets/conduite-changement-1.ppt" class="portfolio-btn">
+                <i class="fas fa-eye"></i>
+              </a>
+              <a href="assets/conduite-changement-1.ppt" download class="portfolio-btn">
+                <i class="fas fa-download"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-content">
+          <h3>Stratégie conduite du changement</h3>
+          <p>Présentation complète sur la stratégie et les méthodes de conduite du changement organisationnel.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Conduite du changement</span>
+            <span class="portfolio-tag">PPT</span>
+            <span class="portfolio-tag">Stratégie</span>
+          </div>
+          <a href="assets/conduite-changement-1.ppt" download class="portfolio-btn">
+            Télécharger
+          </a>
+        </div>
+      </div>
+
+      <!-- Conduite du changement 2 -->
+      <div class="portfolio-item" data-category="conduite">
+        <div class="portfolio-image">
+          <img src="assets/conduite-changement-2.jpg" alt="Conduite du changement 2">
+          <div class="portfolio-overlay">
+            <div class="portfolio-actions">
+              <a href="assets/conduite-changement-2.ppt" class="portfolio-btn">
+                <i class="fas fa-eye"></i>
+              </a>
+              <a href="assets/conduite-changement-2.ppt" download class="portfolio-btn">
+                <i class="fas fa-download"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-content">
+          <h3>Implémentation GED - Plan changement</h3>
+          <p>Plan détaillé de conduite du changement pour l'implémentation d'une GED.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Conduite du changement</span>
+            <span class="portfolio-tag">PPT</span>
+            <span class="portfolio-tag">GED</span>
+          </div>
+          <a href="assets/conduite-changement-2.ppt" download class="portfolio-btn">
+            Télécharger
+          </a>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Modal -->
+<div id="portfolioModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <div class="modal-body">
+      <!-- Content will be inserted here by JavaScript -->
+    </div>
+  </div>
+</div>
 
 <footer>
   <div class="container footer-content">
@@ -258,25 +698,30 @@
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
 <script>
+  // Menu toggle
   function toggleMenu() {
     const navMenu = document.querySelector('nav ul');
     navMenu.classList.toggle('active');
   }
 
-  // Filtrage du portfolio
+  // Portfolio filtering
   const filterButtons = document.querySelectorAll('.filter-btn');
   const portfolioItems = document.querySelectorAll('.portfolio-item');
 
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-      // Retirer la classe active de tous les boutons
+      // Remove active class from all buttons
       filterButtons.forEach(btn => btn.classList.remove('active'));
-      // Ajouter la classe active au bouton cliqué
+      
+      // Add active class to clicked button
       button.classList.add('active');
       
+      // Get filter value
       const filterValue = button.getAttribute('data-filter');
       
+      // Show or hide portfolio items
       portfolioItems.forEach(item => {
         if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
           item.style.display = 'block';
@@ -285,6 +730,79 @@
         }
       });
     });
+  });
+
+  // Modal functionality
+  const modal = document.getElementById('portfolioModal');
+  const closeModal = document.querySelector('.close-modal');
+  const modalBody = document.querySelector('.modal-body');
+  const viewDetailsButtons = document.querySelectorAll('.view-details');
+  const playVideoButtons = document.querySelectorAll('.play-video');
+
+  // Open modal with content
+  function openModal(type, src) {
+    modalBody.innerHTML = '';
+    
+    if (type === 'pdf') {
+      modalBody.innerHTML = `<iframe src="${src}" frameborder="0"></iframe>`;
+    } else if (type === 'video') {
+      modalBody.innerHTML = `<video controls><source src="${src}" type="video/mp4">Votre navigateur ne supporte pas la lecture de vidéos.</video>`;
+    }
+    
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Close modal
+  closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    
+    // Pause video if playing
+    const video = modalBody.querySelector('video');
+    if (video) {
+      video.pause();
+    }
+  });
+
+  // Close modal when clicking outside
+  window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+      
+      // Pause video if playing
+      const video = modalBody.querySelector('video');
+      if (video) {
+        video.pause();
+      }
+    }
+  });
+
+  // Add event listeners to view details buttons
+  viewDetailsButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      const type = button.getAttribute('data-type');
+      const src = button.getAttribute('data-src');
+      openModal(type, src);
+    });
+  });
+
+  // Add event listeners to play video buttons
+  playVideoButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      const src = button.getAttribute('data-src');
+      openModal('video', src);
+    });
+  });
+
+  // Lightbox initialization
+  lightbox.option({
+    'resizeDuration': 200,
+    'wrapAround': true,
+    'albumLabel': "Image %1 of %2"
   });
 </script>
 
