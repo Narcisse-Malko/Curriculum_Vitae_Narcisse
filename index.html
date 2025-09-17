@@ -94,6 +94,29 @@
       background: rgba(255, 255, 255, 0.1);
     }
 
+    .search-container {
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+    }
+
+    .search-container input {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 20px 0 0 20px;
+      font-size: 0.9rem;
+      width: 200px;
+    }
+
+    .search-container button {
+      padding: 8px 15px;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 0 20px 20px 0;
+      cursor: pointer;
+    }
+
     .menu-toggle {
       display: none;
       flex-direction: column;
@@ -341,6 +364,14 @@
       font-size: 0.9rem;
     }
 
+    /* Search highlight */
+    .highlight {
+      background-color: yellow;
+      color: black;
+      padding: 0 2px;
+      border-radius: 3px;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .menu-toggle {
@@ -365,6 +396,10 @@
       
       nav ul li {
         margin: 10px 0;
+      }
+
+      .search-container {
+        display: none;
       }
 
       header h1 {
@@ -400,6 +435,10 @@
       <li><a href="portfolio.html">PORTFOLIO</a></li>   
       <li><a href="contact.html">CONTACT</a></li>
     </ul>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Rechercher...">
+      <button onclick="searchPage()"><i class="fas fa-search"></i></button>
+    </div>
     <div class="menu-toggle" onclick="toggleMenu()">
       <span></span>
       <span></span>
@@ -609,6 +648,64 @@
     const navMenu = document.querySelector('nav ul');
     navMenu.classList.toggle('active');
   }
+
+  // Fonction de recherche
+  function searchPage() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+    
+    if (searchTerm === '') {
+      return;
+    }
+    
+    // Retirer les surlignages précédents
+    removeHighlights();
+    
+    // Rechercher dans tout le contenu de la page
+    const elements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li, span, a:not(.social-links a)');
+    let found = false;
+    
+    elements.forEach(element => {
+      const text = element.textContent.toLowerCase();
+      if (text.includes(searchTerm)) {
+        highlightText(element, searchTerm);
+        found = true;
+        
+        // Faire défiler jusqu'au premier élément trouvé
+        if (!found) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          found = true;
+        }
+      }
+    });
+    
+    if (!found) {
+      alert('Aucun résultat trouvé pour : ' + searchTerm);
+    }
+  }
+  
+  function highlightText(element, searchTerm) {
+    const text = element.textContent;
+    const regex = new RegExp(searchTerm, 'gi');
+    const newText = text.replace(regex, match => `<span class="highlight">${match}</span>`);
+    
+    element.innerHTML = newText;
+  }
+  
+  function removeHighlights() {
+    const highlights = document.querySelectorAll('.highlight');
+    highlights.forEach(highlight => {
+      const parent = highlight.parentNode;
+      parent.replaceChild(document.createTextNode(highlight.textContent), highlight);
+      parent.normalize();
+    });
+  }
+  
+  // Recherche lors de l'appui sur Entrée
+  document.getElementById('searchInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      searchPage();
+    }
+  });
 </script>
 
 </body>
